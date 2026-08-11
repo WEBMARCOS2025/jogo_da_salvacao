@@ -23,3 +23,13 @@ jobs:
           publish_dir: ./
           publish_branch: gh-pages
           allow_empty_commit: true
+
+      - name: Configure Pages source via API
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Configuring Pages source to gh-pages branch..."
+          curl -s -X PUT -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            https://api.github.com/repos/WEBMARCOS2025/jogo_da_salvacao/pages \
+            -d '{"source":{"branch":"gh-pages","path":"/"}}' || true
