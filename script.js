@@ -1,4 +1,4 @@
-const QUESTION_BANK_SIZE = 10000;
+const QUESTION_BANK_SIZE = 200;
 const totalQuestions = 20;
 const questionsPerGroup = 5;
 const groupNames = ['Grupo 1', 'Grupo 2', 'Grupo 3', 'Grupo 4'];

@@ -13,15 +13,12 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      artifact-path: ${{ steps.upload-artifact.outputs.artifact-path }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Upload Pages artifact
-        id: upload-artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./
 
