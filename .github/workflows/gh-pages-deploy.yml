@@ -27,9 +27,15 @@ jobs:
       - name: Configure Pages source via API
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAGES_PAT: ${{ secrets.PAGES_PAT }}
         run: |
           echo "Configuring Pages source to gh-pages branch..."
+          TOKEN="${PAGES_PAT:-$GITHUB_TOKEN}"
+          if [ -z "$TOKEN" ]; then
+            echo "No token available; skipping Pages API configuration."
+            exit 0
+          fi
           curl -s -X PUT -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Authorization: Bearer $TOKEN" \
             https://api.github.com/repos/WEBMARCOS2025/jogo_da_salvacao/pages \
             -d '{"source":{"branch":"gh-pages","path":"/"}}' || true
